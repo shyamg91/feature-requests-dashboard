@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, Building2, Building, Users, User, Quote, Sparkles, BarChart3, ArrowUpRight } from 'lucide-react';
+import { ChevronDown, Building2, Building, Users, User, Quote, BarChart3, TrendingUp, Zap } from 'lucide-react';
 
 const data = {
   enterprise: {
@@ -8,9 +8,9 @@ const data = {
     count: 269,
     percentage: "21%",
     icon: Building2,
-    gradient: "linear-gradient(135deg, #1E293B 0%, #334155 50%, #475569 100%)",
-    accent: "#334155",
-    accentLight: "#64748B",
+    gradient: "linear-gradient(135deg, #0F172A 0%, #1E293B 100%)",
+    accent: "#6366F1",
+    accentLight: "#818CF8",
     theme: "Admin & Security Controls",
     requests: [
       { rank: 1, feature: "SCIM/Okta provisioning", priority: "Critical", quote: "SCIM provisioning from Okta would be nice so we can control licensing directly from our Okta admin console.", customer: "brandon.kern@coterieinsurance.com" },
@@ -31,9 +31,9 @@ const data = {
     count: 410,
     percentage: "33%",
     icon: Building,
-    gradient: "linear-gradient(135deg, #0D9488 0%, #14B8A6 50%, #2DD4BF 100%)",
-    accent: "#0D9488",
-    accentLight: "#14B8A6",
+    gradient: "linear-gradient(135deg, #059669 0%, #10B981 100%)",
+    accent: "#10B981",
+    accentLight: "#34D399",
     theme: "Workflow & Integrations",
     requests: [
       { rank: 1, feature: "Copy transcript button", priority: "Critical", quote: "Please add a 'copy' button that copies the transcript into TXT. I am tired of downloading word docs.", customer: "andre@flywayhealth.com" },
@@ -54,9 +54,9 @@ const data = {
     count: 146,
     percentage: "12%",
     icon: Users,
-    gradient: "linear-gradient(135deg, #EA580C 0%, #F97316 50%, #FB923C 100%)",
-    accent: "#EA580C",
-    accentLight: "#F97316",
+    gradient: "linear-gradient(135deg, #EA580C 0%, #F97316 100%)",
+    accent: "#F97316",
+    accentLight: "#FB923C",
     theme: "Flexible Licensing",
     requests: [
       { rank: 1, feature: "Mixed license types per team", priority: "Critical", quote: "I would like the ability to assign different types of licenses to my teammates.", customer: "10ainote01@profine-group.com" },
@@ -77,9 +77,9 @@ const data = {
     count: 430,
     percentage: "34%",
     icon: User,
-    gradient: "linear-gradient(135deg, #0284C7 0%, #0EA5E9 50%, #38BDF8 100%)",
-    accent: "#0284C7",
-    accentLight: "#0EA5E9",
+    gradient: "linear-gradient(135deg, #7C3AED 0%, #8B5CF6 100%)",
+    accent: "#8B5CF6",
+    accentLight: "#A78BFA",
     theme: "Transcript Quality",
     requests: [
       { rank: 1, feature: "Auto-detect language mid-meeting", priority: "Critical", quote: "The meeting spontaneously switched to German. Transcript is useless.", customer: "antonio@mbold.io" },
@@ -97,10 +97,10 @@ const data = {
 };
 
 const priorityStyles = {
-  Critical: { bg: '#FEE2E2', color: '#B91C1C', border: '#FECACA' },
-  High: { bg: '#FEF3C7', color: '#B45309', border: '#FDE68A' },
-  Medium: { bg: '#F1F5F9', color: '#475569', border: '#E2E8F0' },
-  Low: { bg: '#F8FAFC', color: '#64748B', border: '#F1F5F9' }
+  Critical: { bg: 'rgba(239, 68, 68, 0.1)', color: '#DC2626', border: 'rgba(239, 68, 68, 0.2)' },
+  High: { bg: 'rgba(245, 158, 11, 0.1)', color: '#D97706', border: 'rgba(245, 158, 11, 0.2)' },
+  Medium: { bg: 'rgba(100, 116, 139, 0.1)', color: '#475569', border: 'rgba(100, 116, 139, 0.15)' },
+  Low: { bg: 'rgba(148, 163, 184, 0.1)', color: '#64748B', border: 'rgba(148, 163, 184, 0.15)' }
 };
 
 const FeatureCard = ({ request, accent }) => {
@@ -111,45 +111,57 @@ const FeatureCard = ({ request, accent }) => {
     <div
       style={{
         background: 'white',
-        borderRadius: '12px',
-        marginBottom: '10px',
+        borderRadius: '16px',
+        marginBottom: '12px',
         boxShadow: expanded
-          ? '0 10px 30px -8px rgba(0,0,0,0.12)'
-          : '0 1px 3px rgba(0,0,0,0.06)',
-        border: '1px solid #E2E8F0',
-        borderLeft: `3px solid ${accent}`,
-        transform: expanded ? 'scale(1.005)' : 'scale(1)',
-        transition: 'all 0.25s ease',
-        overflow: 'hidden'
+          ? '0 20px 40px -12px rgba(0,0,0,0.15)'
+          : '0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06)',
+        border: '1px solid rgba(0,0,0,0.06)',
+        transform: expanded ? 'scale(1.01)' : 'scale(1)',
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        overflow: 'hidden',
+        position: 'relative'
       }}
     >
+      <div
+        style={{
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          bottom: 0,
+          width: '3px',
+          background: `linear-gradient(180deg, ${accent} 0%, ${accent}88 100%)`,
+          borderRadius: '3px 0 0 3px'
+        }}
+      />
       <button
         onClick={() => setExpanded(!expanded)}
         style={{
           width: '100%',
-          padding: '14px 16px',
+          padding: '16px 18px 16px 20px',
           background: 'none',
           border: 'none',
           cursor: 'pointer',
           textAlign: 'left',
           display: 'flex',
           alignItems: 'flex-start',
-          gap: '12px',
-          fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+          gap: '14px',
+          fontFamily: 'Inter, sans-serif'
         }}
       >
         <div style={{
-          width: '32px',
-          height: '32px',
-          borderRadius: '8px',
-          background: `${accent}10`,
+          width: '36px',
+          height: '36px',
+          borderRadius: '10px',
+          background: `linear-gradient(135deg, ${accent}15 0%, ${accent}08 100%)`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           fontWeight: '600',
-          fontSize: '13px',
+          fontSize: '14px',
           color: accent,
-          flexShrink: 0
+          flexShrink: 0,
+          border: `1px solid ${accent}20`
         }}>
           {request.rank}
         </div>
@@ -159,102 +171,111 @@ const FeatureCard = ({ request, accent }) => {
             fontWeight: '500',
             fontSize: '14px',
             color: '#1E293B',
-            lineHeight: '1.4',
-            marginBottom: '6px',
-            fontFamily: 'Inter, -apple-system, sans-serif'
+            lineHeight: '1.5',
+            marginBottom: '8px',
+            letterSpacing: '-0.01em'
           }}>
             {request.feature}
           </div>
           <span style={{
-            display: 'inline-block',
-            padding: '2px 8px',
-            borderRadius: '4px',
-            fontSize: '10px',
+            display: 'inline-flex',
+            alignItems: 'center',
+            padding: '4px 10px',
+            borderRadius: '6px',
+            fontSize: '11px',
             fontWeight: '600',
             textTransform: 'uppercase',
-            letterSpacing: '0.3px',
+            letterSpacing: '0.5px',
             background: priority.bg,
             color: priority.color,
-            border: `1px solid ${priority.border}`,
-            fontFamily: 'Inter, -apple-system, sans-serif'
+            border: `1px solid ${priority.border}`
           }}>
             {request.priority}
           </span>
         </div>
 
         <ChevronDown
-          size={16}
+          size={18}
           style={{
             color: '#94A3B8',
             transform: expanded ? 'rotate(180deg)' : 'rotate(0)',
-            transition: 'transform 0.25s ease',
+            transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             flexShrink: 0,
-            marginTop: '2px'
+            marginTop: '4px'
           }}
         />
       </button>
 
-      {expanded && (
-        <div style={{ padding: '0 16px 14px' }}>
+      <div style={{
+        maxHeight: expanded ? '300px' : '0',
+        opacity: expanded ? 1 : 0,
+        overflow: 'hidden',
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+      }}>
+        <div style={{ padding: '0 18px 16px 20px' }}>
           <div style={{
-            background: '#F8FAFC',
-            borderRadius: '8px',
-            padding: '12px',
-            borderLeft: `2px solid ${accent}`
+            background: 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%)',
+            borderRadius: '12px',
+            padding: '16px',
+            position: 'relative'
           }}>
             <Quote
-              size={14}
+              size={32}
               style={{
+                position: 'absolute',
+                top: '12px',
+                left: '12px',
                 color: accent,
-                opacity: 0.4,
-                marginBottom: '6px'
+                opacity: 0.15
               }}
             />
             <p style={{
               fontSize: '13px',
               color: '#475569',
               fontStyle: 'italic',
-              lineHeight: '1.55',
+              lineHeight: '1.7',
               margin: 0,
-              fontFamily: 'Inter, -apple-system, sans-serif'
+              paddingLeft: '28px',
+              position: 'relative',
+              zIndex: 1
             }}>
               "{request.quote}"
             </p>
             <div style={{
-              marginTop: '10px',
-              paddingTop: '10px',
-              borderTop: '1px solid #E2E8F0',
+              marginTop: '14px',
+              paddingTop: '14px',
+              borderTop: '1px solid rgba(0,0,0,0.06)',
               display: 'flex',
               alignItems: 'center',
-              gap: '8px'
+              gap: '10px'
             }}>
               <div style={{
-                width: '20px',
-                height: '20px',
-                borderRadius: '50%',
-                background: accent,
+                width: '24px',
+                height: '24px',
+                borderRadius: '8px',
+                background: `linear-gradient(135deg, ${accent} 0%, ${accent}CC 100%)`,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: 'white',
-                fontSize: '9px',
+                fontSize: '11px',
                 fontWeight: '600',
-                fontFamily: 'Inter, sans-serif'
+                boxShadow: `0 2px 8px ${accent}40`
               }}>
                 {request.customer.charAt(0).toUpperCase()}
               </div>
               <span style={{
-                fontSize: '11px',
-                color: '#94A3B8',
-                fontFamily: 'SF Mono, Monaco, monospace',
-                letterSpacing: '-0.2px'
+                fontSize: '12px',
+                color: '#64748B',
+                fontFamily: "'JetBrains Mono', monospace",
+                letterSpacing: '-0.3px'
               }}>
                 {request.customer}
               </span>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
@@ -269,24 +290,33 @@ const SegmentSection = ({ segment, isOpen, onToggle }) => {
         style={{
           width: '100%',
           background: segment.gradient,
-          borderRadius: '16px',
-          padding: '18px 20px',
+          borderRadius: '20px',
+          padding: '20px 22px',
           border: 'none',
           cursor: 'pointer',
-          boxShadow: `0 4px 20px -4px ${segment.accent}40`,
-          transition: 'all 0.25s ease',
+          boxShadow: `0 8px 32px -8px ${segment.accent}50`,
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
           position: 'relative',
           overflow: 'hidden'
         }}
       >
         <div style={{
           position: 'absolute',
-          top: '-30px',
-          right: '-30px',
-          width: '100px',
-          height: '100px',
+          top: '-50px',
+          right: '-50px',
+          width: '150px',
+          height: '150px',
           borderRadius: '50%',
-          background: 'rgba(255,255,255,0.1)'
+          background: 'rgba(255,255,255,0.08)'
+        }} />
+        <div style={{
+          position: 'absolute',
+          bottom: '-30px',
+          left: '30%',
+          width: '80px',
+          height: '80px',
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.05)'
         }} />
 
         <div style={{
@@ -296,96 +326,120 @@ const SegmentSection = ({ segment, isOpen, onToggle }) => {
           position: 'relative',
           zIndex: 1
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <div style={{
-              width: '44px',
-              height: '44px',
-              borderRadius: '12px',
-              background: 'rgba(255,255,255,0.2)',
+              width: '48px',
+              height: '48px',
+              borderRadius: '14px',
+              background: 'rgba(255,255,255,0.15)',
+              backdropFilter: 'blur(10px)',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              border: '1px solid rgba(255,255,255,0.2)'
             }}>
-              <Icon size={22} color="white" />
+              <Icon size={24} color="white" strokeWidth={1.5} />
             </div>
             <div style={{ textAlign: 'left' }}>
               <div style={{
-                fontWeight: '700',
-                fontSize: '17px',
+                fontWeight: '600',
+                fontSize: '18px',
                 color: 'white',
-                letterSpacing: '-0.3px',
-                fontFamily: 'Inter, -apple-system, sans-serif'
+                letterSpacing: '-0.02em'
               }}>
                 {segment.name}
               </div>
               <div style={{
-                fontSize: '12px',
-                color: 'rgba(255,255,255,0.75)',
+                fontSize: '13px',
+                color: 'rgba(255,255,255,0.7)',
                 fontWeight: '500',
-                fontFamily: 'Inter, sans-serif'
+                marginTop: '2px'
               }}>
                 {segment.subtitle}
               </div>
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <div style={{ textAlign: 'right' }}>
               <div style={{
-                fontSize: '26px',
+                fontSize: '28px',
                 fontWeight: '700',
                 color: 'white',
                 lineHeight: 1,
-                fontFamily: 'Inter, sans-serif'
+                letterSpacing: '-0.03em'
               }}>
                 {segment.count}
               </div>
               <div style={{
-                fontSize: '10px',
+                fontSize: '11px',
                 color: 'rgba(255,255,255,0.6)',
                 fontWeight: '500',
-                letterSpacing: '0.3px',
-                fontFamily: 'Inter, sans-serif'
+                letterSpacing: '0.02em',
+                marginTop: '4px'
               }}>
                 {segment.percentage} of total
               </div>
             </div>
-            <ChevronDown
-              size={20}
-              color="white"
-              style={{
-                transform: isOpen ? 'rotate(180deg)' : 'rotate(0)',
-                transition: 'transform 0.25s ease',
-                opacity: 0.8
-              }}
-            />
+            <div style={{
+              width: '32px',
+              height: '32px',
+              borderRadius: '10px',
+              background: 'rgba(255,255,255,0.1)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <ChevronDown
+                size={18}
+                color="white"
+                style={{
+                  transform: isOpen ? 'rotate(180deg)' : 'rotate(0)',
+                  transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                }}
+              />
+            </div>
           </div>
         </div>
       </button>
 
-      {isOpen && (
+      <div style={{
+        maxHeight: isOpen ? '2000px' : '0',
+        opacity: isOpen ? 1 : 0,
+        overflow: 'hidden',
+        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+      }}>
         <div style={{
-          marginTop: '10px',
-          background: '#FAFAFA',
-          borderRadius: '14px',
-          padding: '14px',
-          border: '1px solid #E2E8F0'
+          marginTop: '12px',
+          background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%)',
+          borderRadius: '18px',
+          padding: '18px',
+          border: '1px solid rgba(0,0,0,0.06)',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
         }}>
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '6px',
-            marginBottom: '12px',
-            paddingLeft: '2px'
+            gap: '8px',
+            marginBottom: '16px',
+            paddingLeft: '4px'
           }}>
-            <BarChart3 size={12} color={segment.accent} />
+            <div style={{
+              width: '24px',
+              height: '24px',
+              borderRadius: '8px',
+              background: `linear-gradient(135deg, ${segment.accent}15 0%, ${segment.accent}08 100%)`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <BarChart3 size={14} color={segment.accent} />
+            </div>
             <span style={{
-              fontSize: '10px',
+              fontSize: '12px',
               fontWeight: '600',
-              color: segment.accent,
-              textTransform: 'uppercase',
-              letterSpacing: '0.8px',
-              fontFamily: 'Inter, sans-serif'
+              color: '#1E293B',
+              letterSpacing: '0.02em'
             }}>
               Top 10 Requests
             </span>
@@ -399,7 +453,7 @@ const SegmentSection = ({ segment, isOpen, onToggle }) => {
             />
           ))}
         </div>
-      )}
+      </div>
     </div>
   );
 };
@@ -416,60 +470,82 @@ export default function FeatureRequestsDashboard() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: '#F8FAFC',
-      fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+      background: 'linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%)'
     }}>
       {/* Header */}
       <div style={{
         background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%)',
-        padding: '24px 20px 28px',
-        borderBottom: '1px solid #E2E8F0'
+        padding: '28px 20px 32px',
+        borderBottom: '1px solid rgba(0,0,0,0.06)'
       }}>
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'flex-start',
-          marginBottom: '20px'
+          marginBottom: '24px'
         }}>
           <div>
-            <h1 style={{
-              fontSize: '24px',
-              fontWeight: '700',
-              color: '#0F172A',
-              margin: 0,
-              letterSpacing: '-0.5px',
-              fontFamily: 'Inter, sans-serif'
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              marginBottom: '6px'
             }}>
-              Feature Requests
-            </h1>
+              <div style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '10px',
+                background: 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 4px 12px rgba(99, 102, 241, 0.3)'
+              }}>
+                <Zap size={18} color="white" strokeWidth={2} />
+              </div>
+              <h1 style={{
+                fontSize: '26px',
+                fontWeight: '700',
+                color: '#0F172A',
+                margin: 0,
+                letterSpacing: '-0.03em'
+              }}>
+                Feature Requests
+              </h1>
+            </div>
             <p style={{
-              fontSize: '13px',
+              fontSize: '14px',
               color: '#64748B',
-              margin: '4px 0 0',
+              margin: '0 0 0 42px',
               fontWeight: '400',
-              fontFamily: 'Inter, sans-serif'
+              letterSpacing: '-0.01em'
             }}>
               Customer insights by segment
             </p>
           </div>
-          <div style={{ textAlign: 'right' }}>
+          <div style={{
+            textAlign: 'right',
+            background: 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%)',
+            padding: '12px 16px',
+            borderRadius: '14px',
+            border: '1px solid rgba(0,0,0,0.06)'
+          }}>
             <div style={{
               fontSize: '32px',
               fontWeight: '700',
               color: '#0F172A',
               lineHeight: 1,
-              fontFamily: 'Inter, sans-serif'
+              letterSpacing: '-0.03em'
             }}>
               {totalRequests.toLocaleString()}
             </div>
             <div style={{
-              fontSize: '10px',
+              fontSize: '11px',
               color: '#94A3B8',
               fontWeight: '500',
               textTransform: 'uppercase',
-              letterSpacing: '0.5px',
-              marginTop: '2px',
-              fontFamily: 'Inter, sans-serif'
+              letterSpacing: '0.05em',
+              marginTop: '4px'
             }}>
               Total Requests
             </div>
@@ -480,34 +556,35 @@ export default function FeatureRequestsDashboard() {
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '8px'
+          gap: '10px'
         }}>
           {Object.entries(data).map(([key, seg]) => (
             <div
               key={key}
               style={{
                 background: 'white',
-                borderRadius: '10px',
-                padding: '12px 10px',
+                borderRadius: '14px',
+                padding: '14px 12px',
                 textAlign: 'center',
-                border: '1px solid #E2E8F0',
-                boxShadow: '0 1px 2px rgba(0,0,0,0.04)'
+                border: '1px solid rgba(0,0,0,0.06)',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+                transition: 'all 0.2s ease'
               }}
             >
               <div style={{
-                fontSize: '18px',
-                fontWeight: '600',
+                fontSize: '20px',
+                fontWeight: '700',
                 color: '#1E293B',
-                fontFamily: 'Inter, sans-serif'
+                letterSpacing: '-0.02em'
               }}>
                 {seg.count}
               </div>
               <div style={{
-                fontSize: '9px',
+                fontSize: '10px',
                 color: '#94A3B8',
                 fontWeight: '500',
-                marginTop: '2px',
-                fontFamily: 'Inter, sans-serif'
+                marginTop: '4px',
+                letterSpacing: '0.02em'
               }}>
                 {seg.subtitle}
               </div>
@@ -517,60 +594,73 @@ export default function FeatureRequestsDashboard() {
       </div>
 
       {/* Key Themes */}
-      <div style={{ padding: '16px 16px 8px' }}>
+      <div style={{ padding: '20px 16px 12px' }}>
         <div style={{
           background: 'white',
-          borderRadius: '14px',
-          padding: '16px',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
-          border: '1px solid #E2E8F0'
+          borderRadius: '18px',
+          padding: '18px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.02)',
+          border: '1px solid rgba(0,0,0,0.06)'
         }}>
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
-            marginBottom: '12px'
+            gap: '10px',
+            marginBottom: '16px'
           }}>
-            <ArrowUpRight size={14} color="#0F172A" />
+            <div style={{
+              width: '28px',
+              height: '28px',
+              borderRadius: '8px',
+              background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <TrendingUp size={14} color="white" />
+            </div>
             <span style={{
-              fontSize: '12px',
+              fontSize: '14px',
               fontWeight: '600',
               color: '#0F172A',
-              fontFamily: 'Inter, sans-serif'
+              letterSpacing: '-0.01em'
             }}>
               Key Themes
             </span>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {Object.entries(data).map(([key, seg]) => (
               <div key={key} style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '10px'
+                gap: '12px',
+                padding: '10px 12px',
+                background: 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%)',
+                borderRadius: '10px'
               }}>
                 <div style={{
-                  width: '6px',
-                  height: '6px',
+                  width: '8px',
+                  height: '8px',
                   borderRadius: '50%',
-                  background: seg.accent,
-                  flexShrink: 0
+                  background: `linear-gradient(135deg, ${seg.accent} 0%, ${seg.accentLight} 100%)`,
+                  flexShrink: 0,
+                  boxShadow: `0 2px 6px ${seg.accent}40`
                 }} />
                 <span style={{
-                  fontSize: '11px',
-                  color: '#94A3B8',
+                  fontSize: '12px',
+                  color: '#64748B',
                   fontWeight: '500',
-                  width: '65px',
-                  flexShrink: 0,
-                  fontFamily: 'Inter, sans-serif'
+                  width: '75px',
+                  flexShrink: 0
                 }}>
                   {seg.subtitle}
                 </span>
                 <span style={{
-                  fontSize: '12px',
-                  color: '#334155',
+                  fontSize: '13px',
+                  color: '#1E293B',
                   fontWeight: '500',
-                  fontFamily: 'Inter, sans-serif'
+                  letterSpacing: '-0.01em'
                 }}>
                   {seg.theme}
                 </span>
@@ -581,7 +671,7 @@ export default function FeatureRequestsDashboard() {
       </div>
 
       {/* Segments */}
-      <div style={{ padding: '8px 16px 24px' }}>
+      <div style={{ padding: '8px 16px 32px' }}>
         {Object.entries(data).map(([key, segment]) => (
           <SegmentSection
             key={key}
@@ -595,21 +685,20 @@ export default function FeatureRequestsDashboard() {
       {/* Footer */}
       <div style={{
         textAlign: 'center',
-        padding: '0 20px 28px'
+        padding: '0 20px 36px'
       }}>
         <p style={{
-          fontSize: '11px',
+          fontSize: '12px',
           color: '#94A3B8',
           margin: 0,
-          fontFamily: 'Inter, sans-serif'
+          fontWeight: '500'
         }}>
           Analysis of 3,552 customer feedback entries
         </p>
         <p style={{
-          fontSize: '10px',
+          fontSize: '11px',
           color: '#CBD5E1',
-          margin: '4px 0 0',
-          fontFamily: 'Inter, sans-serif'
+          margin: '6px 0 0'
         }}>
           Tap segments to expand • Tap requests for quotes
         </p>
