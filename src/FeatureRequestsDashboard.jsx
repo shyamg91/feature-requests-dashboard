@@ -472,6 +472,10 @@ export default function FeatureRequestsDashboard() {
       minHeight: '100vh',
       background: 'linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%)'
     }}>
+      <div style={{
+        maxWidth: '860px',
+        margin: '0 auto'
+      }}>
       {/* Header */}
       <div style={{
         background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%)',
@@ -702,6 +706,7 @@ export default function FeatureRequestsDashboard() {
         }}>
           Tap segments to expand • Tap requests for quotes
         </p>
+      </div>
       </div>
     </div>
   );
